@@ -1,6 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Login from './containers/Login';
+import GlobalStyles from './styles/globalStyles';
 
-import Login from './containers/Login'
+document.addEventListener('DOMContentLoaded', () => {
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    ReactDOM.createRoot(rootElement).render(
+      <>
+        <Login />
+        <GlobalStyles />
+      </>,
 
-ReactDOM.createRoot(<Login />, document.getElementById('root'))
+    );
+  } else {
+    console.error('Element with ID "root" not found in the document.');
+  }
+});
