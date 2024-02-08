@@ -1,19 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Login from './containers/Login';
-import GlobalStyles from './styles/globalStyles';
+/* eslint-disable import-helpers/order-imports */
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+// eslint-disable-next-line no-unused-vars
+import Login from './containers/Login'
+import Register from './containers/Register'
+
+import GlobalStyles from './styles/globalStyles'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const rootElement = document.getElementById('root');
+  const rootElement = document.getElementById('root')
   if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
       <>
-        <Login />
+        <Register />
         <GlobalStyles />
-      </>,
-
-    );
+      </>
+    )
   } else {
-    console.error('Element with ID "root" not found in the document.');
+    console.error('Element with ID "root" not found in the document.')
   }
-});
+})
