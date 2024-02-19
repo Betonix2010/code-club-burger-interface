@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Background from '../../assets/Background.svg'
 
+
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
@@ -12,7 +13,7 @@ export const Container = styled.div`
   align-items: center;
 `
 
-export const RegisterImg = styled.img`
+export const RegisterImage = styled.img`
   height: 70%;
 `
 
