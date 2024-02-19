@@ -2,6 +2,8 @@
 import { yupResolver } from "@hookform/resolvers/yup"
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Logo from '../../assets/logo.svg'
@@ -29,7 +31,7 @@ function Register() {
       .min(6, 'A senha deve ter pelo menos 6 digitos'),
     confirmPassword: Yup.string()
       .required('A senha é obrigatória')
-      .min(6, 'A senha deve ter pelo menos 6 digitos')
+      .oneOf([Yup.ref('password')], 'As senhas devem ser iguais')
   })
 
   const {
@@ -41,12 +43,27 @@ function Register() {
   })
 
   const onSubmit = async clientData => {
-    const response = await api.post('users', {
-      name: clientData.name,
-      email: clientData.email,
-      password: clientData.password
-    })
-    console.log(response)
+    try {
+      const { status } = await api.post(
+        'users',
+        {
+          name: clientData.name,
+          email: clientData.email,
+          password: clientData.password
+        },
+        { validateStatus: () => true }
+      )
+
+      if (status === 201 || status === 200) {
+        toast.success('Cadastro criado com sucesso')
+      } else if (status === 409) {
+        toast.error('E-mail já cadastrado! Faça login para continuar')
+      } else {
+        throw new Error()
+      }
+    } catch (err) {
+      toast.error('Falha no sistema! Tente novamente')
+    }
   }
 
   return (
@@ -89,7 +106,10 @@ function Register() {
           </Button>
         </form>
         <SignInLink>
-          Já possui conta? <a>Sign In</a>
+          Já possui conta?{' '}
+          <Link style={{ color: 'white' }} to="/login">
+            Sign In
+          </Link>
         </SignInLink>
       </ContainerItens>
     </Container>
