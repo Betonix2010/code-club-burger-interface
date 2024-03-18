@@ -1,6 +1,6 @@
 /* eslint-disable import-helpers/order-imports */
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { ToastContainer } from 'react-toastify'
 
 // eslint-disable-next-line no-unused-vars
@@ -11,7 +11,7 @@ import GlobalStyles from './styles/globalStyles'
 document.addEventListener('DOMContentLoaded', () => {
   const rootElement = document.getElementById('root')
   if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(
+    createRoot(rootElement).render(
       <>
         <UserProvider>
           <Routes />

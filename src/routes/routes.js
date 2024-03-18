@@ -1,19 +1,22 @@
 /* eslint-disable prettier/prettier */
-import React from 'react'
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import React from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
-import Login from '../containers/Login'
-import Register from '../containers/Register'
+import Home from '../containers/Home'
+import Login from '../containers/Login';
+import Register from '../containers/Register';
+import PrivateRoute from './private-route'
 
 function Routes() {
   return (
     <Router>
       <Switch>
-        <Route Component={Login} path="/login" />
-        <Route Component={Register} path="/cadastro" />
+        <Route component={Login} path="/login" />
+        <Route component={Register} path="/cadastro" />
+        <PrivateRoute exact component={Home} path="/" />
       </Switch>
     </Router>
-  )
+  );
 }
 
-export default Routes
+export default Routes;
